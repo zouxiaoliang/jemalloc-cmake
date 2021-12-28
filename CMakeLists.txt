@@ -31,9 +31,11 @@ message(STATUS "configure_command: ${configure_command}")
 
 set(build_command ${make_command} -j2 && make install)
 
+message(STATUS "jemalloc source dir: ${CMAKE_CURRENT_SOURCE_DIR}/jemalloc")
+
 ExternalProject_Add(jemalloc
     DOWNLOAD_COMMAND ""
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/jemalloc
     CONFIGURE_COMMAND ${configure_command}
     BUILD_COMMAND ${build_command}
     BUILD_IN_SOURCE true
@@ -43,6 +45,7 @@ set_target_properties(thirdparty_jemalloc_static PROPERTIES IMPORTED_LOCATION
     "${install_prefix}/lib/libjemalloc.a")
 add_dependencies(thirdparty_jemalloc_static jemalloc)
 
-add_library(thirdparty_facebook-jemalloc INTERFACE)
-target_link_libraries(thirdparty_facebook-jemalloc INTERFACE
+add_library(thirdparty_facebook_jemalloc INTERFACE)
+target_link_libraries(thirdparty_facebook_jemalloc INTERFACE
     thirdparty_jemalloc_static rt pthread)
+target_include_directories(thirdparty_facebook_jemalloc INTERFACE ${install_prefix}/include/)
