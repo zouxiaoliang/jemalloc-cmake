@@ -25,7 +25,9 @@ set(configure_command
     "CXXFLAGS=${CMAKE_CXX_FLAGS} -Wno-ignored-attributes -Wno-unknown-warning-option --sysroot ${CMAKE_SYSROOT}"
     "CFLAGS=${CMAKE_C_FLAGS} -Wno-ignored-attributes -Wno-unknown-warning-option --sysroot ${CMAKE_SYSROOT}"
     perl ./configure
+    "--enable-prof=true"
     "--prefix=${install_prefix}"
+    "--exec-prefix=${install_prefix}"
     )
 message(STATUS "configure_command: ${configure_command}")
 
@@ -45,7 +47,7 @@ set_target_properties(thirdparty_jemalloc_static PROPERTIES IMPORTED_LOCATION
     "${install_prefix}/lib/libjemalloc.a")
 add_dependencies(thirdparty_jemalloc_static jemalloc)
 
-add_library(thirdparty_facebook_jemalloc INTERFACE)
-target_link_libraries(thirdparty_facebook_jemalloc INTERFACE
+add_library(thirdparty_jemalloc INTERFACE)
+target_link_libraries(thirdparty_jemalloc INTERFACE
     thirdparty_jemalloc_static rt pthread)
-target_include_directories(thirdparty_facebook_jemalloc INTERFACE ${install_prefix}/include/)
+target_include_directories(thirdparty_jemalloc INTERFACE ${install_prefix}/include/)
