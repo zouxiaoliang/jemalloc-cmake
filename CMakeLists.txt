@@ -51,3 +51,4 @@ add_library(thirdparty_jemalloc INTERFACE)
 target_link_libraries(thirdparty_jemalloc INTERFACE
     thirdparty_jemalloc_static rt pthread)
 target_include_directories(thirdparty_jemalloc INTERFACE ${install_prefix}/include/)
+target_compile_definitions(thirdparty_jemalloc INTERFACE USING_JEMALLOC=1)
