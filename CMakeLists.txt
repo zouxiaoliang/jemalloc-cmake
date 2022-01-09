@@ -71,8 +71,11 @@ function(jemallocMain)
     add_dependencies(thirdparty_jemalloc_static jemalloc)
 
     add_library(thirdparty_jemalloc INTERFACE)
-    target_link_libraries(thirdparty_jemalloc INTERFACE
-        thirdparty_jemalloc_static rt pthread)
+    if (APPLE)
+        target_link_libraries(thirdparty_jemalloc INTERFACE thirdparty_jemalloc_static pthread)
+    else()
+        target_link_libraries(thirdparty_jemalloc INTERFACE thirdparty_jemalloc_static rt pthread)
+    endif()
     target_include_directories(thirdparty_jemalloc INTERFACE ${install_prefix}/include/)
     target_compile_definitions(thirdparty_jemalloc INTERFACE USING_JEMALLOC=1)
 
