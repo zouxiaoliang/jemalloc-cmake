@@ -42,6 +42,9 @@ function(jemallocMain)
         "--prefix=${install_prefix}"
         "--exec-prefix=${install_prefix}"
         )
+    if (APPLE)
+        list(APPEND configure_command "--with-jemalloc-prefix=")
+    endif()
     message(STATUS "configure_command: ${configure_command}")
 
     set(build_command ${make_command} -j2 && make install)
