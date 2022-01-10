@@ -37,7 +37,7 @@ function(jemallocMain)
         "CXX=${CMAKE_CXX_COMPILER}"
         "AR=${CMAKE_AR}"
         "${FLAGS}"
-        perl ./configure
+        perl ${CMAKE_CURRENT_SOURCE_DIR}/jemalloc/configure
         "--with-jemalloc-prefix=je_"
         "--disable-debug"
         "--enable-prof=true"
@@ -64,7 +64,7 @@ function(jemallocMain)
         SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/jemalloc
         CONFIGURE_COMMAND ${configure_command}
         BUILD_COMMAND ${build_command}
-        BUILD_IN_SOURCE true
+        BUILD_IN_SOURCE false
         BUILD_ALWAYS true)
 
     set_target_properties(thirdparty_jemalloc_static PROPERTIES IMPORTED_LOCATION
