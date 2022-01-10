@@ -38,6 +38,7 @@ function(jemallocMain)
         "AR=${CMAKE_AR}"
         "${FLAGS}"
         perl ./configure
+        "--with-jemalloc-prefix=je_"
         "--disable-debug"
         "--enable-prof=true"
         "--prefix=${install_prefix}"
