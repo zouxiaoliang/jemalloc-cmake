@@ -38,8 +38,6 @@ function(jemallocMain)
         "AR=${CMAKE_AR}"
         "${FLAGS}"
         perl ${CMAKE_CURRENT_SOURCE_DIR}/jemalloc/configure
-        "--with-jemalloc-prefix=je_"
-        "--disable-debug"
         "--enable-prof=true"
         "--prefix=${install_prefix}"
         "--exec-prefix=${install_prefix}"
