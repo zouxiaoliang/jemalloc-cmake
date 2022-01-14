@@ -66,7 +66,7 @@ function(jemallocMain)
         CONFIGURE_COMMAND ${configure_command}
         BUILD_COMMAND ${build_command}
         BUILD_IN_SOURCE false
-        BUILD_ALWAYS true)
+        BUILD_ALWAYS false)
 
     set_target_properties(thirdparty_jemalloc_static PROPERTIES IMPORTED_LOCATION
         "${install_prefix}/lib/libjemalloc.a")
